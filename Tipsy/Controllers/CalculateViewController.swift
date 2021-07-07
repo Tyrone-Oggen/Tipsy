@@ -16,27 +16,26 @@ class CalculateViewController: UIViewController {
     @IBOutlet weak var twentyPercentButton: UIButton!
     @IBOutlet weak var splitNumberLabel: UILabel!
     
-    var tipPercent: Float = 0.1
+    var tipPercent: Double = 0.10
 
     @IBAction func tipPercentChanged(_ sender: UIButton) {
-        let selectedPercent = sender.currentTitle!
         zeroPercentButton.isSelected = false
         tenPercentButton.isSelected = false
         twentyPercentButton.isSelected = false
         
-        if selectedPercent == "0%" {
-            zeroPercentButton.isSelected = true
-            tipPercent = 0.0
-        } else if selectedPercent == "10%" {
-            tenPercentButton.isSelected = true
-            tipPercent = 0.1
-        } else {
-            twentyPercentButton.isSelected = true
-            tipPercent = 0.2
-        }
+        sender.isSelected = true
+        
+        let selectedPercent = sender.currentTitle!
+        
+        let buttonTitleMinusPercentSign =  String(selectedPercent.dropLast())
+        
+        let buttonTitleAsANumber = Double(buttonTitleMinusPercentSign)!
+        
+        tipPercent = buttonTitleAsANumber / 100
     }
     
     @IBAction func splitStepperValueChanged(_ sender: UIStepper) {
+        
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
