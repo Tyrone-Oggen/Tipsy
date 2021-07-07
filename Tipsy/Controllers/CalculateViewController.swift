@@ -17,6 +17,7 @@ class CalculateViewController: UIViewController {
     @IBOutlet weak var splitNumberLabel: UILabel!
     
     var tipPercent: Double = 0.10
+    var numberOfPeople: Int = 2
 
     @IBAction func tipPercentChanged(_ sender: UIButton) {
         zeroPercentButton.isSelected = false
@@ -35,10 +36,12 @@ class CalculateViewController: UIViewController {
     }
     
     @IBAction func splitStepperValueChanged(_ sender: UIStepper) {
+        splitNumberLabel.text = String(format: "%.0f", sender.value)
         
+        numberOfPeople = Int(sender.value)
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        print(tipPercent)
+        print(numberOfPeople)
     }
 }
